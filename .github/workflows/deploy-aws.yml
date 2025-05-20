@@ -34,3 +34,6 @@ jobs:
 
       - name: Deploy to AWS
         run: aws s3 sync dist s3://vite-deploy-playground
+
+      - name: Invalidate CloudFront Cache
+        run: aws cloudfront create-invalidation --distribution-id distribution_ID --paths "/*"

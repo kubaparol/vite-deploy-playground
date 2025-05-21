@@ -1,6 +1,7 @@
-name: Deploy on push
+name: Deploy - Main
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -13,4 +14,9 @@ jobs:
   deploy-vercel:
     needs: deploy-netlify
     uses: ./.github/workflows/deploy-vercel.yml
+    secrets: inherit
+
+  deploy-aws:
+    needs: deploy-vercel
+    uses: ./.github/workflows/deploy-aws.yml
     secrets: inherit

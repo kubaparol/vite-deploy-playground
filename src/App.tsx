@@ -1,12 +1,30 @@
 import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
+import { useFlag, useStatus } from "@featurevisor/react";
 
 function App() {
+  const { isReady } = useStatus();
   const [count, setCount] = useState(0);
+
+  const isTestFeatureEnabled = useFlag("test-feature", {
+    country: new URLSearchParams(window.location.search).get("country"),
+  });
 
   return (
     <>
+      {isReady ? (
+        <>
+          <h1>Featurevisor is ready</h1>
+
+          <h2>
+            Test feature is {isTestFeatureEnabled ? "enabled" : "disabled"}
+          </h2>
+        </>
+      ) : (
+        <h1>Featurevisor is not ready</h1>
+      )}
+
       <div>
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />

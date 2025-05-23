@@ -11,6 +11,8 @@
     "test": "vitest"
   },
   "dependencies": {
+    "@featurevisor/react": "1.35.3",
+    "@featurevisor/sdk": "1.35.3",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },
